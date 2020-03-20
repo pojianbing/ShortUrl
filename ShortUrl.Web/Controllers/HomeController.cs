@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using ShortUrl.Common;
+using ShortUrl.Core;
 using ShortUrl.Web.Models;
 
 namespace ShortUrl.Web.Controllers
@@ -26,6 +28,10 @@ namespace ShortUrl.Web.Controllers
         [Route("/{shortId:required}")]
         public IActionResult Index(string shortId)
         {
+            Int64 num = 9176543210987654321L;
+            var str = RadixConvert.To62Radix(num);
+            var num2 = RadixConvert.From62Radix(str);
+
             return View();
         }
 
@@ -37,6 +43,9 @@ namespace ShortUrl.Web.Controllers
         [Route("/generate")]
         public IActionResult Generate()
         {
+            var url = "https://u.geekbang.org/subject/fe/100044701?utm_source=frontend&utm_medium=message&utm_term=frontendmessage";
+            var shortId = ShortUrlHelper.ToShrotId(url);
+
             return View();
         }
 
