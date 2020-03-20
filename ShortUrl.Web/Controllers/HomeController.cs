@@ -18,12 +18,24 @@ namespace ShortUrl.Web.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        /// <summary>
+        /// 短链接入口url
+        /// </summary>
+        /// <param name="shortId">短链接id</param>
+        /// <returns></returns>
+        [Route("/{shortId:required}")]
+        public IActionResult Index(string shortId)
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        /// <summary>
+        /// 短链生成页面
+        /// </summary>
+        /// <param name="shortId">短链接id</param>
+        /// <returns></returns>
+        [Route("/generate")]
+        public IActionResult Generate()
         {
             return View();
         }
