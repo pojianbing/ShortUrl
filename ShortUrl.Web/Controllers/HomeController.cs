@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ShortUrl.Common;
 using ShortUrl.Core;
-using ShortUrl.Core.Service;
+using ShortUrl.Service;
 using ShortUrl.Web.Models;
 
 namespace ShortUrl.Web.Controllers
@@ -55,7 +55,7 @@ namespace ShortUrl.Web.Controllers
         public IActionResult Generate(string url)
         {
             // 生成id
-            var shortId = new DefaultShortIdGenerator().Generate(url);
+            var shortId = new DefaultShortIdService().Generate(url);
             DefaultStoreService.Add(new Core.DbModels.ShortUrlMap() { ShortId = shortId, LongUrl = url });
 
             var shortUrl = $"{Request.Scheme}://{Request.Host}/{shortId}";

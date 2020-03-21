@@ -5,9 +5,9 @@ using System.Text;
 namespace ShortUrl.Core
 {
     /// <summary>
-    /// 端链接id生成器
+    /// 短链接生成器
     /// </summary>
-    public interface IShortIdGenerator
+    public interface IShortUrlService
     {
         /// <summary>
         ///根据url生成短链接id
@@ -15,5 +15,12 @@ namespace ShortUrl.Core
         /// <param name="url"></param>
         /// <returns></returns>
         string Generate(string url);
+
+        /// <summary>
+        /// 获取长链接
+        /// </summary>
+        /// <param name="shortId"></param>
+        /// <returns></returns>
+        string GetLongUrl(string shortId);
     }
 }

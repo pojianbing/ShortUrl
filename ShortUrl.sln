@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C1924858
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShortUrl.Test", "ShortUrl.Test\ShortUrl.Test.csproj", "{8AD82C68-FEA0-49B5-85BF-5092EAEFEA3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortUrl.Core.Service", "ShortUrl.Core.Service\ShortUrl.Core.Service.csproj", "{64F96853-9A67-4EE7-BD26-1F5225068AFB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortUrl.Service", "ShortUrl.Core.Service\ShortUrl.Service.csproj", "{64F96853-9A67-4EE7-BD26-1F5225068AFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

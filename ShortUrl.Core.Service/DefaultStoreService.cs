@@ -3,8 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using ShortUrl.Core;
 
-namespace ShortUrl.Core.Service
+namespace ShortUrl.Service
 {
     /// <summary>
     /// 默认存储服务

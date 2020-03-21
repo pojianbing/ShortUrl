@@ -1,14 +1,15 @@
 ﻿using ShortUrl.Common;
+using ShortUrl.Core;
 using System;
 using System.Data.HashFunction.MurmurHash;
 using System.Text;
 
-namespace ShortUrl.Core.Service
+namespace ShortUrl.Service
 {
     /// <summary>
     /// 默认短链接id
     /// </summary>
-    public class DefaultShortIdGenerator : IShortIdGenerator
+    public class DefaultShortIdService : IShortIdService
     {
         #region 接口实现
 
