@@ -52,10 +52,9 @@ namespace ShortUrl.Web.Controllers
         /// <param name="shortId">短链接id</param>
         /// <returns></returns>
         [Route("/confrimgenerate")]
-        public IActionResult Generate(string longUrl)
+        public IActionResult Generate(string url)
         {
             // 生成id
-            var url = "https://u.geekbang.org/subject/fe/100044701?utm_source=frontend&utm_medium=message&utm_term=frontendmessage";
             var shortId = new DefaultShortIdGenerator().Generate(url);
             DefaultStoreService.Add(new Core.DbModels.ShortUrlMap() { ShortId = shortId, LongUrl = url });
 
