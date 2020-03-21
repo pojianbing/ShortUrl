@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ShortUrl.Common\ShortUrl.Common.csproj" />
+    <ProjectReference Include="..\ShortUrl.Core.Service\ShortUrl.Core.Service.csproj" />
     <ProjectReference Include="..\ShortUrl.Core\ShortUrl.Core.csproj" />
   </ItemGroup>
 

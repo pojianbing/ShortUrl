@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ShortUrl.Common;
 using ShortUrl.Core;
+using ShortUrl.Core.Service;
 using ShortUrl.Web.Models;
 
 namespace ShortUrl.Web.Controllers
@@ -14,6 +15,8 @@ namespace ShortUrl.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+
+        private static DefaultStoreService DefaultStoreService = new DefaultStoreService();
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -28,11 +31,8 @@ namespace ShortUrl.Web.Controllers
         [Route("/{shortId:required}")]
         public IActionResult Index(string shortId)
         {
-            Int64 num = 9176543210987654321L;
-            var str = RadixConvert.To62Radix(num);
-            var num2 = RadixConvert.From62Radix(str);
-
-            return View();
+            var url = DefaultStoreService.GetShortUrl(shortId);
+            return Redirect(url);
         }
 
         /// <summary>
@@ -43,10 +43,26 @@ namespace ShortUrl.Web.Controllers
         [Route("/generate")]
         public IActionResult Generate()
         {
-            var url = "https://u.geekbang.org/subject/fe/100044701?utm_source=frontend&utm_medium=message&utm_term=frontendmessage";
-            var shortId = ShortUrlHelper.ToShrotId(url);
-
             return View();
+        }
+
+        /// <summary>
+        /// 短链生成页面
+        /// </summary>
+        /// <param name="shortId">短链接id</param>
+        /// <returns></returns>
+        [Route("/confrimgenerate")]
+        public IActionResult Generate(string longUrl)
+        {
+            // 生成id
+            var url = "https://u.geekbang.org/subject/fe/100044701?utm_source=frontend&utm_medium=message&utm_term=frontendmessage";
+            var shortId = new DefaultShortIdGenerator().Generate(url);
+            DefaultStoreService.Add(new Core.DbModels.ShortUrlMap() { ShortId = shortId, LongUrl = url });
+
+            var shortUrl = $"{Request.Scheme}://{Request.Host}/{shortId}";
+            ViewBag.shortUrl = shortUrl;
+
+            return View("Generate");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

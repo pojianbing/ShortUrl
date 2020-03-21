@@ -4,8 +4,9 @@
 }
 
 <h1>Generate</h1>
-<p>
-    <label>长链接:</label><input type="text" />
-    <input type="button" value="提交"/>
-</p>
+<form action="/confrimgenerate" method="post">
+    <label>长链接:</label><input type="text" name="longUrl" />
+    <input type="submit" value="提交" />
+</form>
 
+<a href="@ViewBag.shortUrl" target="_blank">短链接</a>
