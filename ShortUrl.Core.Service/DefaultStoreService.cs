@@ -14,13 +14,13 @@ namespace ShortUrl.Service
     {
         private List<ShortUrlMap> Db = new List<ShortUrlMap>();
 
-        private void directAdd(ShortUrlMap shortUrlMap)
-        {
-            if (isExist(shortUrlMap.ShortId, shortUrlMap.LongUrl)) throw new UniqueException();
-            Db.Add(shortUrlMap);
-        }
-
-        private bool isExist(string shortId, string longUrl)
+        /// <summary>
+        /// 是否存在
+        /// </summary>
+        /// <param name="shortId">短链接id</param>
+        /// <param name="longUrl">长链接</param>
+        /// <returns></returns>
+        public bool Exist(string shortId, string longUrl)
         {
             return Db.Exists(e => e.ShortId == shortId && e.LongUrl == longUrl);
         }
@@ -31,20 +31,8 @@ namespace ShortUrl.Service
         /// <param name="shortUrlMap"></param>
         public void Add(ShortUrlMap shortUrlMap)
         {
-            try
-            {
-                directAdd(shortUrlMap);
-            }
-            catch (UniqueException)
-            {
-                // 长链接不能存在，则解决冲突
-                if (!isExist(shortUrlMap.ShortId, shortUrlMap.LongUrl))
-                {
-                    // 长链接，追加自定义字符串后重新添加
-                    shortUrlMap.LongUrl += "[DUPLICATE]";
-                    this.Add(shortUrlMap);
-                }
-            }
+            if (Exist(shortUrlMap.ShortId, shortUrlMap.LongUrl)) throw new UniqueException();
+            Db.Add(shortUrlMap);
         }
 
         /// <summary>
@@ -56,10 +44,19 @@ namespace ShortUrl.Service
         {
             return Db.First(e => e.ShortId == shortId).LongUrl;
         }
+
+        /// <summary>
+        /// 查询所有的短链接id
+        /// </summary>
+        /// <returns></returns>
+        public List<string> QueryAllShortIds()
+        {
+            return Db.Select(e => e.ShortId).ToList();
+        }
     }
 
     public class UniqueException : Exception
-    { 
-        
+    {
+
     }
 }

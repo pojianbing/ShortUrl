@@ -11,6 +11,14 @@ namespace ShortUrl.Core
     public interface IStoreService
     {
         /// <summary>
+        /// 是否存在
+        /// </summary>
+        /// <param name="shortId">短链接id</param>
+        /// <param name="longUrl">长链接</param>
+        /// <returns></returns>
+        bool Exist(string shortId, string longUrl);
+
+        /// <summary>
         /// 增加短长链接映射
         /// </summary>
         /// <param name="shortUrlMap"></param>
@@ -19,8 +27,14 @@ namespace ShortUrl.Core
         /// <summary>
         /// 获取短链接
         /// </summary>
-        /// <param name="shortId"></param>
+        /// <param name="shortId">短链接id</param>
         /// <returns></returns>
         string GetShortUrl(string shortId);
+
+        /// <summary>
+        /// 查询所有的短链接id
+        /// </summary>
+        /// <returns></returns>
+        List<string> QueryAllShortIds();
     }
 }

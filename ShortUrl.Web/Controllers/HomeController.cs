@@ -56,8 +56,6 @@ namespace ShortUrl.Web.Controllers
         {
             // 生成id
             var shortId = new DefaultShortIdService().Generate(url);
-            DefaultStoreService.Add(new Core.DbModels.ShortUrlMap() { ShortId = shortId, LongUrl = url });
-
             var shortUrl = $"{Request.Scheme}://{Request.Host}/{shortId}";
             ViewBag.shortUrl = shortUrl;
 
