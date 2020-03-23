@@ -5,9 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.Configuration;
-using ShortUrl.Application.Contracts;
 using Microsoft.AspNetCore.Builder;
 using System.Linq;
+using ShortUrl.Application.Contracts;
 
 namespace ShortUrl.Application.HashBase.Extensions
 {
