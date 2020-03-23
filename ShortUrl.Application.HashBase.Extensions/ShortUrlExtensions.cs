@@ -24,6 +24,15 @@ namespace ShortUrl.Application.HashBase.Extensions
             services.AddTransient(typeof(IShortIdService), typeof(DefaultShortIdService));
             services.AddTransient(typeof(IStoreService), typeof(DefaultStoreService));
             services.AddTransient(typeof(IShortUrlService), typeof(DefaultShortUrlService));
+
+            //将Redis分布式缓存服务添加到服务中
+            services.AddDistributedRedisCache(options =>
+            {
+                //用于连接Redis的配置  
+                options.Configuration = appOptions.RedisConnection;
+                //Redis实例名RedisDistributedCache
+                options.InstanceName = "RedisDistributedCache";
+            });
         }
 
         public static IApplicationBuilder ShortUrlDbAutoMigrate(this IApplicationBuilder app, IServiceProvider serviceProvider)

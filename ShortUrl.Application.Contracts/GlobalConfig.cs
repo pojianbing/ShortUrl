@@ -12,6 +12,10 @@ namespace ShortUrl.Application.Contracts
         /// 冲突后缀
         /// </summary>
         public const string CONFLICT_POSTFIX = "[DUPLICATE]";
+        /// <summary>
+        /// 缓存key
+        /// </summary>
+        public const string CACHE_KEY = nameof(CACHE_KEY);
 
         #endregion
 

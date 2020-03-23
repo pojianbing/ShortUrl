@@ -39,7 +39,7 @@ namespace ShortUrl.Application.HashBase
         /// <param name="shortUrlMap"></param>
         public void Add(ShortUrlMap shortUrlMap)
         {
-            if (Exist(shortUrlMap.ShortId, shortUrlMap.LongUrl)) throw new UniqueException();
+            //if (Exist(shortUrlMap.ShortId, shortUrlMap.LongUrl)) throw new UniqueException();
             _context.ShortUrlMaps.Add(shortUrlMap);
             _context.SaveChanges();
         }

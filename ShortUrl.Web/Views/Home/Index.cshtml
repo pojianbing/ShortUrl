@@ -1,8 +1,73 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿
+@{
+    ViewData["Title"] = "Generate";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<style>
+
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+    }
+
+    .form-signin {
+        width: 100%;
+        max-width: 330px;
+        padding: 15px;
+        margin: auto;
+    }
+
+        .form-signin .checkbox {
+            font-weight: 400;
+        }
+
+        .form-signin .form-control {
+            position: relative;
+            box-sizing: border-box;
+            height: auto;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+            .form-signin .form-control:focus {
+                z-index: 2;
+            }
+
+        .form-signin input[type="email"] {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .form-signin input[type="password"] {
+            margin-bottom: 10px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+</style>
+
+@*<form action="/confrimgenerate" method="post">
+    <label>长链接:</label><input type="text" name="url" />
+    <input type="submit" value="提交" />
+</form>*@
+
+
+<form class="form-signin" action="/confrimgenerate" method="post">
+    <img class="mb-4" src="/docs/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+    <label for="inputUrl" class="sr-only">Email address</label>
+    <input id="inputUrl" class="form-control" placeholder="请输入url" required autofocus name="url" >
+    <div class="mb-3"></div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">生成</button>
+</form>
+
+<a href="@ViewBag.shortUrl" target="_blank">@ViewBag.shortUrl</a>

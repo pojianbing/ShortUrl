@@ -25,7 +25,7 @@ namespace ShortUrl.Web.Controllers
         /// <param name="shortId">短链接id</param>
         /// <returns></returns>
         [Route("/{shortId:required}")]
-        public IActionResult Index(string shortId)
+        public IActionResult Go(string shortId)
         {
             var url = _shortUrlService.GetLongUrl(shortId);
             return Redirect(url);
@@ -36,8 +36,8 @@ namespace ShortUrl.Web.Controllers
         /// </summary>
         /// <param name="shortId">短链接id</param>
         /// <returns></returns>
-        [Route("/generate")]
-        public IActionResult Generate()
+        [Route("/")]
+        public IActionResult Index()
         {
             return View();
         }
@@ -55,9 +55,13 @@ namespace ShortUrl.Web.Controllers
             var shortUrl = $"{Request.Scheme}://{Request.Host}/{shortId}";
             ViewBag.shortUrl = shortUrl;
 
-            return View("Generate");
+            return View("Index");
         }
 
+        /// <summary>
+        /// 错误页
+        /// </summary>
+        /// <returns></returns>
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

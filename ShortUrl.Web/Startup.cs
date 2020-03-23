@@ -30,6 +30,7 @@ namespace ShortUrl.Web
             services.AddShortUrl(options =>
             {
                 options.ShortUrlConnection = Configuration.GetConnectionString("ShortUrlConnection");
+                options.RedisConnection = Configuration.GetValue<string>("RedisConnection");
             });
 
             var builder = services.AddControllersWithViews();
