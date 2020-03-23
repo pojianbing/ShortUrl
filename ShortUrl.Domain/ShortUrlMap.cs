@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShortUrl.Core.DbModels
+namespace ShortUrl.Domain
 {
     public class ShortUrlMap
     {

@@ -1,10 +1,10 @@
-﻿using ShortUrl.Common;
-using ShortUrl.Core;
+﻿using ShortUrl.Application.Contracts;
+using ShortUrl.Common;
 using System;
 using System.Data.HashFunction.MurmurHash;
 using System.Text;
 
-namespace ShortUrl.Service
+namespace ShortUrl.Application.HashBase
 {
     /// <summary>
     /// 默认短链接id

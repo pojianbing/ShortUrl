@@ -6,12 +6,14 @@
 
   <ItemGroup>
     <PackageReference Include="BloomFilter.NetCore" Version="0.0.8" />
+    <PackageReference Include="Polly" Version="7.2.0" />
     <PackageReference Include="System.Data.HashFunction.MurmurHash" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ShortUrl.Common\ShortUrl.Common.csproj" />
-    <ProjectReference Include="..\ShortUrl.Core\ShortUrl.Core.csproj" />
+    <ProjectReference Include="..\ShortUrl.Core\ShortUrl.Application.Contracts.csproj" />
+    <ProjectReference Include="..\ShortUrl.EntityFrameworkCore\ShortUrl.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
 </Project>

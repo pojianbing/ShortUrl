@@ -1,9 +1,7 @@
-﻿using ShortUrl.Core.DbModels;
-using System;
+﻿using ShortUrl.Domain;
 using System.Collections.Generic;
-using System.Text;
 
-namespace ShortUrl.Core
+namespace ShortUrl.Application.Contracts
 {
     /// <summary>
     /// 存储服务

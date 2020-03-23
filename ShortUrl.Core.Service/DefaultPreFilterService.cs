@@ -1,9 +1,7 @@
-﻿using ShortUrl.Core;
-using System;
-using System.Collections.Generic;
+﻿using ShortUrl.Application.Contracts;
 using System.Text;
 
-namespace ShortUrl.Service
+namespace ShortUrl.Application.HashBase
 {
     /// <summary>
     /// 默认前置过滤服务

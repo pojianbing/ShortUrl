@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShortUrl.Web", "ShortUrl.Web\ShortUrl.Web.csproj", "{C5A422F7-BCA5-45B8-B7A4-8977C5FEA43D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShortUrl.Core", "ShortUrl.Core\ShortUrl.Core.csproj", "{3EF689B9-B430-4F53-B132-63EE380A8A11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShortUrl.Application.Contracts", "ShortUrl.Core\ShortUrl.Application.Contracts.csproj", "{3EF689B9-B430-4F53-B132-63EE380A8A11}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShortUrl.Common", "ShortUrl.Common\ShortUrl.Common.csproj", "{09536200-5F68-4A34-B754-E558CF3E7A08}"
 EndProject
@@ -13,7 +13,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C1924858
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShortUrl.Test", "ShortUrl.Test\ShortUrl.Test.csproj", "{8AD82C68-FEA0-49B5-85BF-5092EAEFEA3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortUrl.Service", "ShortUrl.Core.Service\ShortUrl.Service.csproj", "{64F96853-9A67-4EE7-BD26-1F5225068AFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShortUrl.Application.HashBase", "ShortUrl.Core.Service\ShortUrl.Application.HashBase.csproj", "{64F96853-9A67-4EE7-BD26-1F5225068AFB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShortUrl.Domain", "ShortUrl.Domain\ShortUrl.Domain.csproj", "{04677C84-9C51-4526-BA99-55D85E3227D0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShortUrl.EntityFrameworkCore", "ShortUrl.EntityFrameworkCore\ShortUrl.EntityFrameworkCore.csproj", "{52C01A31-ACBA-4810-B7C7-A1E3799461B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortUrl.Application.HashBase.Extensions", "ShortUrl.Application.HashBase.Extensions\ShortUrl.Application.HashBase.Extensions.csproj", "{F4ADA1F4-A15A-45DD-9F61-6D6A0148C688}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +47,18 @@ Global
 		{64F96853-9A67-4EE7-BD26-1F5225068AFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64F96853-9A67-4EE7-BD26-1F5225068AFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64F96853-9A67-4EE7-BD26-1F5225068AFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04677C84-9C51-4526-BA99-55D85E3227D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04677C84-9C51-4526-BA99-55D85E3227D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04677C84-9C51-4526-BA99-55D85E3227D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04677C84-9C51-4526-BA99-55D85E3227D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52C01A31-ACBA-4810-B7C7-A1E3799461B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52C01A31-ACBA-4810-B7C7-A1E3799461B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52C01A31-ACBA-4810-B7C7-A1E3799461B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52C01A31-ACBA-4810-B7C7-A1E3799461B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4ADA1F4-A15A-45DD-9F61-6D6A0148C688}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4ADA1F4-A15A-45DD-9F61-6D6A0148C688}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4ADA1F4-A15A-45DD-9F61-6D6A0148C688}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4ADA1F4-A15A-45DD-9F61-6D6A0148C688}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

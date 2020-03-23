@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ShortUrl.Common;
-using ShortUrl.Core;
-using ShortUrl.Service;
+using ShortUrl.Application.Contracts;
+using ShortUrl.Application.HashBase;
 using ShortUrl.Web.Models;
+using System.Diagnostics;
 
 namespace ShortUrl.Web.Controllers
 {
@@ -16,11 +11,12 @@ namespace ShortUrl.Web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        private static DefaultStoreService DefaultStoreService = new DefaultStoreService();
+        private readonly IShortUrlService _shortUrlService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IShortUrlService shortUrlService, ILogger<HomeController> logger)
         {
             _logger = logger;
+            _shortUrlService = shortUrlService;
         }
 
         /// <summary>
@@ -31,7 +27,7 @@ namespace ShortUrl.Web.Controllers
         [Route("/{shortId:required}")]
         public IActionResult Index(string shortId)
         {
-            var url = DefaultStoreService.GetShortUrl(shortId);
+            var url = _shortUrlService.GetLongUrl(shortId);
             return Redirect(url);
         }
 
@@ -55,7 +51,7 @@ namespace ShortUrl.Web.Controllers
         public IActionResult Generate(string url)
         {
             // 生成id
-            var shortId = new DefaultShortIdService().Generate(url);
+            var shortId = _shortUrlService.Generate(url);
             var shortUrl = $"{Request.Scheme}://{Request.Host}/{shortId}";
             ViewBag.shortUrl = shortUrl;
 

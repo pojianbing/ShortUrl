@@ -1,18 +1,26 @@
-﻿using ShortUrl.Core.DbModels;
+﻿using Microsoft.Extensions.Logging;
+using ShortUrl.Application.Contracts;
+using ShortUrl.Domain;
+using ShortUrl.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
-using ShortUrl.Core;
 
-namespace ShortUrl.Service
+namespace ShortUrl.Application.HashBase
 {
     /// <summary>
     /// 默认存储服务
     /// </summary>
     public class DefaultStoreService : IStoreService
     {
-        private List<ShortUrlMap> Db = new List<ShortUrlMap>();
+        private readonly ShortUrlDbContext _context;
+        private readonly ILogger<DefaultStoreService> _logger;
+
+        public DefaultStoreService(ShortUrlDbContext context, ILogger<DefaultStoreService> logger)
+        {
+            _context = context;
+            _logger = logger;
+        }
 
         /// <summary>
         /// 是否存在
@@ -22,7 +30,7 @@ namespace ShortUrl.Service
         /// <returns></returns>
         public bool Exist(string shortId, string longUrl)
         {
-            return Db.Exists(e => e.ShortId == shortId && e.LongUrl == longUrl);
+            return _context.ShortUrlMaps.Count(e => e.ShortId == shortId && e.LongUrl == longUrl) > 0;
         }
 
         /// <summary>
@@ -32,7 +40,7 @@ namespace ShortUrl.Service
         public void Add(ShortUrlMap shortUrlMap)
         {
             if (Exist(shortUrlMap.ShortId, shortUrlMap.LongUrl)) throw new UniqueException();
-            Db.Add(shortUrlMap);
+            _context.ShortUrlMaps.Add(shortUrlMap);
         }
 
         /// <summary>
@@ -42,7 +50,7 @@ namespace ShortUrl.Service
         /// <returns></returns>
         public string GetShortUrl(string shortId)
         {
-            return Db.First(e => e.ShortId == shortId).LongUrl;
+            return _context.ShortUrlMaps.First(e => e.ShortId == shortId).LongUrl;
         }
 
         /// <summary>
@@ -51,12 +59,11 @@ namespace ShortUrl.Service
         /// <returns></returns>
         public List<string> QueryAllShortIds()
         {
-            return Db.Select(e => e.ShortId).ToList();
+            return _context.ShortUrlMaps.Select(e => e.ShortId).ToList();
         }
     }
 
     public class UniqueException : Exception
     {
-
     }
 }

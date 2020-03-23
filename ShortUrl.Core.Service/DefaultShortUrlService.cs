@@ -1,10 +1,8 @@
-﻿
-using ShortUrl.Core;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Polly;
+using ShortUrl.Application.Contracts;
+using ShortUrl.Domain;
 
-namespace ShortUrl.Service
+namespace ShortUrl.Application.HashBase
 {
     /// <summary>
     /// 短链接服务
@@ -15,10 +13,12 @@ namespace ShortUrl.Service
         /// 存储服务
         /// </summary>
         private IStoreService storeService;
+
         /// <summary>
         /// 短链接id生成服务
         /// </summary>
         private IShortIdService shortIdService;
+
         /// <summary>
         /// 前置过滤服务
         /// </summary>
@@ -44,25 +44,18 @@ namespace ShortUrl.Service
         /// <returns></returns>
         public string Generate(string url)
         {
-            // 生成id
-            var shortId = shortIdService.Generate(url);
-            var shortUrlMap = new Core.DbModels.ShortUrlMap { ShortId = shortId, LongUrl = url };
+            ShortUrlMap shortUrlMap = null;
 
-            try
+            var postfix = string.Empty;
+            Policy.Handle<UniqueException>().Retry(2).Execute(() =>
             {
+                url += postfix;
+                var shortId = shortIdService.Generate(url);
+                shortUrlMap = new ShortUrlMap { ShortId = shortId, LongUrl = url };
                 storeService.Add(shortUrlMap);
-            }
-            catch (UniqueException)
-            {
-                // 长链接不能存在，则解决冲突
-                if (!storeService.Exist(shortUrlMap.ShortId, shortUrlMap.LongUrl))
-                {
-                    // 长链接，追加自定义字符串后重新添加
-                    shortUrlMap.LongUrl += "[DUPLICATE]";
-                    shortUrlMap.ShortId = shortIdService.Generate(shortUrlMap.LongUrl);
-                    storeService.Add(shortUrlMap);
-                }
-            }
+
+                if (string.IsNullOrWhiteSpace(postfix)) postfix = GlobalConfig.CONFLICT_POSTFIX;
+            });
 
             return shortUrlMap.ShortId;
         }
@@ -74,7 +67,7 @@ namespace ShortUrl.Service
         /// <returns></returns>
         public string GetLongUrl(string shortId)
         {
-            return string.Empty;
+            return storeService.GetShortUrl(shortId);
         }
     }
 }

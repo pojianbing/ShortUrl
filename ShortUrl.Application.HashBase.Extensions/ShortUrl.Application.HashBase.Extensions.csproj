@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.2" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ShortUrl.Core.Service\ShortUrl.Application.HashBase.csproj" />
+    <ProjectReference Include="..\ShortUrl.Core\ShortUrl.Application.Contracts.csproj" />
+    <ProjectReference Include="..\ShortUrl.EntityFrameworkCore\ShortUrl.EntityFrameworkCore.csproj" />
+  </ItemGroup>
+
+</Project>

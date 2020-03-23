@@ -4,9 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ShortUrl.EntityFrameworkCore;
+using ShortUrl.Application.HashBase.Extensions;
 
 namespace ShortUrl.Web
 {
@@ -32,11 +35,19 @@ namespace ShortUrl.Web
                 builder.AddRazorRuntimeCompilation();
             }
 #endif
+
+            services.AddShortUrl(options =>
+            {
+                options.ShortUrlConnection = Configuration.GetConnectionString("ShortUrlConnection");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
+            // ×Ô¶¯Ç¨ÒÆ
+            app.ShortUrlDbAutoMigrate(serviceProvider);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

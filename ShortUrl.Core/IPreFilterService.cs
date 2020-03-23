@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShortUrl.Core
+namespace ShortUrl.Application.Contracts
 {
     /// <summary>
     /// 前置过滤服务

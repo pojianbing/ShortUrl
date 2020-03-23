@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ShortUrl.Common\ShortUrl.Common.csproj" />
+    <ProjectReference Include="..\ShortUrl.Domain\ShortUrl.Domain.csproj" />
   </ItemGroup>
 
 </Project>
