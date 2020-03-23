@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ShortUrl.Common\ShortUrl.Common.csproj" />
-    <ProjectReference Include="..\ShortUrl.Core\ShortUrl.Application.Contracts.csproj" />
   </ItemGroup>
 
 </Project>
