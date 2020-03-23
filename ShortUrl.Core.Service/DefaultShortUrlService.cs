@@ -20,21 +20,15 @@ namespace ShortUrl.Application.HashBase
         private IShortIdService shortIdService;
 
         /// <summary>
-        /// 前置过滤服务
-        /// </summary>
-        private IPreFilterService preFilterService;
-
-        /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="storeService"></param>
         /// <param name="shortIdService"></param>
         /// <param name="preFilterService"></param>
-        public DefaultShortUrlService(IStoreService storeService, IShortIdService shortIdService, IPreFilterService preFilterService)
+        public DefaultShortUrlService(IStoreService storeService, IShortIdService shortIdService)
         {
             this.storeService = storeService;
             this.shortIdService = shortIdService;
-            this.preFilterService = preFilterService;
         }
 
         /// <summary>

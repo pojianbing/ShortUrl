@@ -27,6 +27,11 @@ namespace ShortUrl.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddShortUrl(options =>
+            {
+                options.ShortUrlConnection = Configuration.GetConnectionString("ShortUrlConnection");
+            });
+
             var builder = services.AddControllersWithViews();
 
 #if DEBUG
@@ -35,11 +40,6 @@ namespace ShortUrl.Web
                 builder.AddRazorRuntimeCompilation();
             }
 #endif
-
-            services.AddShortUrl(options =>
-            {
-                options.ShortUrlConnection = Configuration.GetConnectionString("ShortUrlConnection");
-            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

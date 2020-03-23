@@ -41,6 +41,7 @@ namespace ShortUrl.Application.HashBase
         {
             if (Exist(shortUrlMap.ShortId, shortUrlMap.LongUrl)) throw new UniqueException();
             _context.ShortUrlMaps.Add(shortUrlMap);
+            _context.SaveChanges();
         }
 
         /// <summary>

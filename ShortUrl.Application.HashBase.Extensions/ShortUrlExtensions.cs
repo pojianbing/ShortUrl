@@ -24,8 +24,6 @@ namespace ShortUrl.Application.HashBase.Extensions
             services.AddTransient(typeof(IShortIdService), typeof(DefaultShortIdService));
             services.AddTransient(typeof(IStoreService), typeof(DefaultStoreService));
             services.AddTransient(typeof(IShortUrlService), typeof(DefaultShortUrlService));
-            services.AddTransient(typeof(IPreFilterService), typeof(DefaultPreFilterService));
-
         }
 
         public static IApplicationBuilder ShortUrlDbAutoMigrate(this IApplicationBuilder app, IServiceProvider serviceProvider)
