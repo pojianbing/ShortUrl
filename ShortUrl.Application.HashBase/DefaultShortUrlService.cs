@@ -93,12 +93,12 @@ namespace ShortUrl.Application.HashBase
         public string GetLongUrl(string shortId)
         {
             // 先从缓存取
-            var url = _cache.GetString(GlobalConfig.CACHE_KEY);
+            var url = _cache.GetString(shortId);
             // 取不到，则从db取
             if (string.IsNullOrWhiteSpace(url))
             {
                 url = _storeService.GetShortUrl(shortId);
-                _cache.SetString(GlobalConfig.CACHE_KEY, url);
+                _cache.SetString(shortId, url);
             }
             // 去除自定义后缀
             url = url ?? string.Empty;
