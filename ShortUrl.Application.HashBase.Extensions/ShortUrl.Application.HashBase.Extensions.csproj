@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ShortUrl.Application.Contracts\ShortUrl.Application.Contracts.csproj" />
     <ProjectReference Include="..\ShortUrl.Application.HashBase\ShortUrl.Application.HashBase.csproj" />
+    <ProjectReference Include="..\ShortUrl.Common\ShortUrl.Common.csproj" />
     <ProjectReference Include="..\ShortUrl.EntityFrameworkCore\ShortUrl.EntityFrameworkCore.csproj" />
   </ItemGroup>
 

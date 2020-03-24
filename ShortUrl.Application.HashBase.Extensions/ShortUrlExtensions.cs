@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Builder;
 using System.Linq;
 using ShortUrl.Application.Contracts;
+using ShortUrl.Common.Cache;
 
 namespace ShortUrl.Application.HashBase.Extensions
 {
@@ -25,14 +26,27 @@ namespace ShortUrl.Application.HashBase.Extensions
             services.AddTransient(typeof(IStoreService), typeof(DefaultStoreService));
             services.AddTransient(typeof(IShortUrlService), typeof(DefaultShortUrlService));
 
-            //将Redis分布式缓存服务添加到服务中
-            services.AddDistributedRedisCache(options =>
+            if (appOptions.CacheType == GlobalConfig.CacheType.Redis)
             {
-                //用于连接Redis的配置  
-                options.Configuration = appOptions.RedisConnection;
-                //Redis实例名RedisDistributedCache
-                options.InstanceName = "RedisDistributedCache";
-            });
+                //将Redis分布式缓存服务添加到服务中
+                services.AddDistributedRedisCache(options =>
+                {
+                    //用于连接Redis的配置  
+                    options.Configuration = appOptions.RedisConnection;
+                    //Redis实例名RedisDistributedCache
+                    options.InstanceName = "RedisDistributedCache";
+                });
+            }
+            else if (appOptions.CacheType == GlobalConfig.CacheType.Memory)
+            {
+                // 内存缓存
+                services.AddDistributedMemoryCache();
+            }
+            else
+            {
+                // 设定一个null缓存
+                services.AddDistributedNullCache();
+            }
         }
 
         public static IApplicationBuilder ShortUrlDbAutoMigrate(this IApplicationBuilder app, IServiceProvider serviceProvider)

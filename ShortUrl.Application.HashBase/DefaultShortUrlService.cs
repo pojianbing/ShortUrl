@@ -100,6 +100,9 @@ namespace ShortUrl.Application.HashBase
                 url = _storeService.GetShortUrl(shortId);
                 _cache.SetString(GlobalConfig.CACHE_KEY, url);
             }
+            // 去除自定义后缀
+            url = url ?? string.Empty;
+            url = url.Replace(GlobalConfig.CONFLICT_POSTFIX, "");
             return url;
         }
     }

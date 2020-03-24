@@ -21,6 +21,25 @@ namespace ShortUrl.Application.Contracts
 
         #region  枚举
 
+        /// <summary>
+        /// 缓存类型
+        /// </summary>
+        public enum CacheType
+        {
+            /// <summary>
+            /// 没有缓存
+            /// </summary>
+            None = 0,
+            /// <summary>
+            /// 内存
+            /// </summary>
+            Memory = 1,
+            /// <summary>
+            /// redis
+            /// </summary>
+            Redis = 2
+        }
+
         #endregion
     }
 }
